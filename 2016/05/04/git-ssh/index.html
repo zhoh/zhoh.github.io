@@ -18,7 +18,7 @@ SSH的方式，本地托管SSH的账户密钥，即SSH key, 通过它在本机�
 
 HTTPS的方式，对初学者来说比较简单，直接使用HTTPS的URL把项目Clone到本地，不需要配置密钥，只是每次fetch或push代码都需要输入密码，比较麻烦；
 SSH的方式，本地托管SSH的账户密钥，即SSH key, 通过它在本机和GitHub之间建立一">
-<meta property="og:updated_time" content="2016-05-04T07:21:33.000Z">
+<meta property="og:updated_time" content="2016-06-01T07:38:35.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mac配置SSH连接GitHub">
 <meta name="twitter:description" content="最近接触的项目都在用分布式的Git管理，能看到这里说明你已经了解为什么要使用Git:-)使用Git有两种方式： HTTPS 和 SSH
@@ -270,11 +270,11 @@ SSH的方式，本地托管SSH的账户密钥，即SSH key, 通过它在本机�
 </code></pre>
 <p>然后可能会看到如下warning</p>
 <pre><code class="bash">The authenticity of host <span class="string">'github.com (192.30.252.1)'</span> can<span class="string">'t be established.
-RSA key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48.
+RSA key fingerprint is 17:23:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48.
 Are you sure you want to continue connecting (yes/no)?</span>
 </code></pre>
 <pre><code class="bash">The authenticity of host <span class="string">'github.com (192.30.252.1)'</span> can<span class="string">'t be established.
-RSA key fingerprint is nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8.
+RSA key fingerprint is nThbg6kXUpJWGl7E1IYOCspRomKxdCARLviKw6E5SY8.
 Are you sure you want to continue connecting (yes/no)?</span>
 </code></pre>
 <p>输入 <code>yes</code> 回车确认即可，然后就能看到认证成功的提示:</p>
