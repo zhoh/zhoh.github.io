@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://zhoh.github.io/"/>
-  <updated>2016-04-13T05:00:09.000Z</updated>
+  <updated>2016-05-04T07:21:33.000Z</updated>
   <id>http://zhoh.github.io/</id>
   
   <author>
@@ -16,34 +16,68 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Hello World</title>
-    <link href="http://zhoh.github.io/2016/04/11/hello-world/"/>
-    <id>http://zhoh.github.io/2016/04/11/hello-world/</id>
-    <published>2016-04-11T08:37:02.000Z</published>
-    <updated>2016-04-13T05:00:09.000Z</updated>
+    <title>Mac配置SSH连接GitHub</title>
+    <link href="http://zhoh.github.io/2016/05/04/git-ssh/"/>
+    <id>http://zhoh.github.io/2016/05/04/git-ssh/</id>
+    <published>2016-05-04T02:39:18.000Z</published>
+    <updated>2016-05-04T07:21:33.000Z</updated>
     
-    <content type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&quot;https://hexo.io/docs/troubleshooting.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&quot;https://github.com/hexojs/hexo/issues&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+    <content type="html">&lt;p&gt;最近接触的项目都在用分布式的Git管理，能看到这里说明你已经了解为什么要使用Git:-)&lt;br&gt;使用Git有两种方式： &lt;code&gt;HTTPS&lt;/code&gt; 和 &lt;code&gt;SSH&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;HTTPS的方式，对初学者来说比较简单，直接使用HTTPS的URL把项目Clone到本地，不需要配置密钥，只是每次fetch或push代码都需要输入密码，比较麻烦；&lt;/li&gt;
+&lt;li&gt;SSH的方式，本地托管SSH的账户密钥，即SSH key, 通过它在本机和GitHub之间建立一个安全连接，fetch或push的时候不需要输入密码；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;以GitHub为例，打开GitHub上的项目Clone方式下拉框，可以看到官方推荐的是使用HTTPS的方式，不过由于不想每次都输入密码且工作原因（Pod仓库用Git管理且要求使用SSH方式下载)，所以下面记录下如何使用SSH的方式去连接GitHub。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h2 id=&quot;Quick-Start&quot;&gt;&lt;a href=&quot;#Quick-Start&quot; class=&quot;headerlink&quot; title=&quot;Quick Start&quot;&gt;&lt;/a&gt;Quick Start&lt;/h2&gt;&lt;h3 id=&quot;Create-a-new-post&quot;&gt;&lt;a href=&quot;#Create-a-new-post&quot; class=&quot;headerlink&quot; title=&quot;Create a new post&quot;&gt;&lt;/a&gt;Create a new post&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo new &lt;span class=&quot;string&quot;&gt;&quot;My New Post&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;More info: &lt;a href=&quot;https://hexo.io/docs/writing.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Writing&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;Run-server&quot;&gt;&lt;a href=&quot;#Run-server&quot; class=&quot;headerlink&quot; title=&quot;Run server&quot;&gt;&lt;/a&gt;Run server&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo server&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;More info: &lt;a href=&quot;https://hexo.io/docs/server.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Server&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;Generate-static-files&quot;&gt;&lt;a href=&quot;#Generate-static-files&quot; class=&quot;headerlink&quot; title=&quot;Generate static files&quot;&gt;&lt;/a&gt;Generate static files&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo generate&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;More info: &lt;a href=&quot;https://hexo.io/docs/generating.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Generating&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;Deploy-to-remote-sites&quot;&gt;&lt;a href=&quot;#Deploy-to-remote-sites&quot; class=&quot;headerlink&quot; title=&quot;Deploy to remote sites&quot;&gt;&lt;/a&gt;Deploy to remote sites&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo deploy&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;More info: &lt;a href=&quot;https://hexo.io/docs/deployment.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Deployment&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&quot;检查Git&quot;&gt;&lt;a href=&quot;#检查Git&quot; class=&quot;headerlink&quot; title=&quot;检查Git&quot;&gt;&lt;/a&gt;检查Git&lt;/h1&gt;&lt;hr&gt;
+&lt;p&gt;首先要确认机器上装了Git，可以打开&lt;code&gt;终端&lt;/code&gt;，试着输入&lt;code&gt;git&lt;/code&gt;来确认，如果没有安装（不大可能吧）可以通过&lt;code&gt;&lt;a href=&quot;http://brew.sh&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Homebrew&lt;/a&gt;&lt;/code&gt;安装Git，或者直接从&lt;code&gt;&lt;a href=&quot;https://itunes.apple.com/cn/app/xcode/id497799835?mt=12&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;AppStore&lt;/a&gt;&lt;/code&gt;安装&lt;code&gt;Xcode&lt;/code&gt;，打开后按照提示安装&lt;code&gt;Command Line Tools&lt;/code&gt;， Git就自动装上了；&lt;/p&gt;
+&lt;h1 id=&quot;创建SSH-Key&quot;&gt;&lt;a href=&quot;#创建SSH-Key&quot; class=&quot;headerlink&quot; title=&quot;创建SSH Key&quot;&gt;&lt;/a&gt;创建SSH Key&lt;/h1&gt;&lt;hr&gt;
+&lt;p&gt;在终端中创建SSH Key&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;$ ssh-keygen -t rsa -C &lt;span class=&quot;string&quot;&gt;&quot;youremail@example.com&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;把上面的邮件地址换成自己的邮件地址，一路回车使用默认值（默认的文件名且不设置密码）即可，然后进入用户主目录下的&lt;code&gt;.ssh&lt;/code&gt;目录，可以看到&lt;code&gt;id_rsa&lt;/code&gt;和&lt;code&gt;id_rsa.pub&lt;/code&gt;两个文件，这两个就是SSH Key的密钥对，其中&lt;code&gt;id_rsa&lt;/code&gt;中的内容是私钥，个人持有不可泄露, &lt;code&gt;id_rsa.pub&lt;/code&gt;中的内容是公钥，用来验证私钥的合法性，使用任一文本编辑器打开id_rsa.pub，并复制其内容备用，或者直接使用下面的命令复制：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;$ pbcopy &amp;lt; ~/.ssh/id_rsa.pub
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;至此，本地的设置已完成，接下来需要去GitHub继续配置；&lt;/p&gt;
+&lt;h1 id=&quot;GitHub设置SSK-Key&quot;&gt;&lt;a href=&quot;#GitHub设置SSK-Key&quot; class=&quot;headerlink&quot; title=&quot;GitHub设置SSK Key&quot;&gt;&lt;/a&gt;GitHub设置SSK Key&lt;/h1&gt;&lt;hr&gt;
+&lt;p&gt;登录GitHub，依次打开Settings—&amp;gt;”SSH and GPG keys”—&amp;gt;”New SSH key”，title自己起个名字，key中填写上一步的公钥文件内容，最后点击“Add SSH key”即可；&lt;/p&gt;
+&lt;h1 id=&quot;测试SSH&quot;&gt;&lt;a href=&quot;#测试SSH&quot; class=&quot;headerlink&quot; title=&quot;测试SSH&quot;&gt;&lt;/a&gt;测试SSH&lt;/h1&gt;&lt;hr&gt;
+&lt;p&gt;在&lt;code&gt;终端&lt;/code&gt;中输入:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;$ ssh -T git@github.com
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;然后可能会看到如下warning&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;The authenticity of host &lt;span class=&quot;string&quot;&gt;&#39;github.com (192.30.252.1)&#39;&lt;/span&gt; can&lt;span class=&quot;string&quot;&gt;&#39;t be established.
+RSA key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48.
+Are you sure you want to continue connecting (yes/no)?&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;The authenticity of host &lt;span class=&quot;string&quot;&gt;&#39;github.com (192.30.252.1)&#39;&lt;/span&gt; can&lt;span class=&quot;string&quot;&gt;&#39;t be established.
+RSA key fingerprint is nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8.
+Are you sure you want to continue connecting (yes/no)?&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;输入 &lt;code&gt;yes&lt;/code&gt; 回车确认即可，然后就能看到认证成功的提示:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;Hi userName! You&lt;span class=&quot;string&quot;&gt;&#39;ve successfully authenticated, but GitHub does not provide shell access.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
 </content>
     
     <summary type="html">
     
-      &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&quot;https://hexo.io/docs/troubleshooting.html&quot;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&quot;https://github.com/hexojs/hexo/issues&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+      &lt;p&gt;最近接触的项目都在用分布式的Git管理，能看到这里说明你已经了解为什么要使用Git:-)&lt;br&gt;使用Git有两种方式： &lt;code&gt;HTTPS&lt;/code&gt; 和 &lt;code&gt;SSH&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;HTTPS的方式，对初学者来说比较简单，直接使用HTTPS的URL把项目Clone到本地，不需要配置密钥，只是每次fetch或push代码都需要输入密码，比较麻烦；&lt;/li&gt;
+&lt;li&gt;SSH的方式，本地托管SSH的账户密钥，即SSH key, 通过它在本机和GitHub之间建立一个安全连接，fetch或push的时候不需要输入密码；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;以GitHub为例，打开GitHub上的项目Clone方式下拉框，可以看到官方推荐的是使用HTTPS的方式，不过由于不想每次都输入密码且工作原因（Pod仓库用Git管理且要求使用SSH方式下载)，所以下面记录下如何使用SSH的方式去连接GitHub。&lt;/p&gt;
     
     </summary>
     
-      <category term="Hexo" scheme="http://zhoh.github.io/categories/Hexo/"/>
+      <category term="Tech" scheme="http://zhoh.github.io/categories/Tech/"/>
     
     
-      <category term="MVVM" scheme="http://zhoh.github.io/tags/MVVM/"/>
+      <category term="GIT" scheme="http://zhoh.github.io/tags/GIT/"/>
+    
+      <category term="SSH" scheme="http://zhoh.github.io/tags/SSH/"/>
+    
+      <category term="Mac" scheme="http://zhoh.github.io/tags/Mac/"/>
     
   </entry>
   
