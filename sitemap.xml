@@ -2,9 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://zhoh.github.io/2016/06/28/textView-maxLength/</loc>
+    
+    <lastmod>2016-06-28T17:03:26.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://zhoh.github.io/2016/06/28/git-multi-ssh/</loc>
+    
+    <lastmod>2016-06-28T11:33:46.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://zhoh.github.io/2016/05/04/git-ssh/</loc>
     
-    <lastmod>2016-06-01T07:38:35.000Z</lastmod>
+    <lastmod>2016-06-28T08:07:01.000Z</lastmod>
     
   </url>
   

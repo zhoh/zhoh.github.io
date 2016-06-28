@@ -18,7 +18,7 @@ SSH的方式，本地托管SSH的账户密钥，即SSH key, 通过它在本机�
 
 HTTPS的方式，对初学者来说比较简单，直接使用HTTPS的URL把项目Clone到本地，不需要配置密钥，只是每次fetch或push代码都需要输入密码，比较麻烦；
 SSH的方式，本地托管SSH的账户密钥，即SSH key, 通过它在本机和GitHub之间建立一">
-<meta property="og:updated_time" content="2016-06-01T07:38:35.000Z">
+<meta property="og:updated_time" content="2016-06-28T08:07:01.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mac配置SSH连接GitHub">
 <meta name="twitter:description" content="最近接触的项目都在用分布式的Git管理，能看到这里说明你已经了解为什么要使用Git:-)使用Git有两种方式： HTTPS 和 SSH
@@ -124,7 +124,7 @@ SSH的方式，本地托管SSH的账户密钥，即SSH key, 通过它在本机�
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/GIT/" style="font-size: 10px;">GIT</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/SSH/" style="font-size: 10px;">SSH</a>
+						<a href="/tags/GIT/" style="font-size: 15px;">GIT</a> <a href="/tags/Mac/" style="font-size: 20px;">Mac</a> <a href="/tags/SSH/" style="font-size: 15px;">SSH</a> <a href="/tags/UI/" style="font-size: 10px;">UI</a> <a href="/tags/iOS/" style="font-size: 10px;">iOS</a>
 					</div>
 				</section>
 				
@@ -253,12 +253,11 @@ SSH的方式，本地托管SSH的账户密钥，即SSH key, 通过它在本机�
 <p>以GitHub为例，打开GitHub上的项目Clone方式下拉框，可以看到官方推荐的是使用HTTPS的方式，不过由于不想每次都输入密码且工作原因（Pod仓库用Git管理且要求使用SSH方式下载)，所以下面记录下如何使用SSH的方式去连接GitHub。</p>
 <a id="more"></a>
 <h1 id="检查Git"><a href="#检查Git" class="headerlink" title="检查Git"></a>检查Git</h1><hr>
-<p>首先要确认机器上装了Git，可以打开<code>终端</code>，试着输入<code>git</code>来确认，如果没有安装（不大可能吧）可以通过<code><a href="http://brew.sh" target="_blank" rel="external">Homebrew</a></code>安装Git，或者直接从<code><a href="https://itunes.apple.com/cn/app/xcode/id497799835?mt=12" target="_blank" rel="external">AppStore</a></code>安装<code>Xcode</code>，打开后按照提示安装<code>Command Line Tools</code>， Git就自动装上了；</p>
+<p>首先要确认机器上装了Git，可以打开<code>终端</code>，试着输入<code>git</code>来确认，如果没有安装可以通过<code><a href="http://brew.sh" target="_blank" rel="external">Homebrew</a></code>安装Git，或者直接从<code><a href="https://itunes.apple.com/cn/app/xcode/id497799835?mt=12" target="_blank" rel="external">AppStore</a></code>安装<code>Xcode</code>，打开后按照提示安装<code>Command Line Tools</code>， Git就自动装上了；</p>
 <h1 id="创建SSH-Key"><a href="#创建SSH-Key" class="headerlink" title="创建SSH Key"></a>创建SSH Key</h1><hr>
-<p>在终端中创建SSH Key</p>
-<pre><code class="bash">$ ssh-keygen -t rsa -C <span class="string">"youremail@example.com"</span>
-</code></pre>
-<p>把上面的邮件地址换成自己的邮件地址，一路回车使用默认值（默认的文件名且不设置密码）即可，然后进入用户主目录下的<code>.ssh</code>目录，可以看到<code>id_rsa</code>和<code>id_rsa.pub</code>两个文件，这两个就是SSH Key的密钥对，其中<code>id_rsa</code>中的内容是私钥，个人持有不可泄露, <code>id_rsa.pub</code>中的内容是公钥，用来验证私钥的合法性，使用任一文本编辑器打开id_rsa.pub，并复制其内容备用，或者直接使用下面的命令复制：</p>
+<p>在终端中创建SSH Key<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-keygen -t rsa -C <span class="string">"youremail@example.com"</span></span><br></pre></td></tr></table></figure></p>
+<p>把上面的邮件地址换成自己的邮件地址，一路回车使用默认值（默认的文件名且不设置密码）即可，然后进入用户主目录下的<code>.ssh</code>目录:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ open ~/.ssh</span><br></pre></td></tr></table></figure></p>
+<p>可以看到<code>id_rsa</code>和<code>id_rsa.pub</code>两个文件，这两个就是SSH Key的密钥对，其中<code>id_rsa</code>中的内容是私钥，个人持有不要泄露, <code>id_rsa.pub</code>中的内容是公钥，用来验证私钥的合法性，使用任一文本编辑器打开id_rsa.pub，并复制其内容备用，或者直接使用下面的命令复制：</p>
 <pre><code class="bash">$ pbcopy &lt; ~/.ssh/id_rsa.pub
 </code></pre>
 <p>至此，本地的设置已完成，接下来需要去GitHub继续配置；</p>
@@ -287,6 +286,20 @@ Are you sure you want to continue connecting (yes/no)?</span>
   </div>
   
     
+<nav id="article-nav">
+  
+    <a href="/2016/06/28/git-multi-ssh/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          多GIT账户的使用
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
   
 </article>
 
