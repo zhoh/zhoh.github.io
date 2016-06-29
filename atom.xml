@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://zhoh.github.io/"/>
-  <updated>2016-06-29T01:41:17.000Z</updated>
+  <updated>2016-06-29T01:43:40.000Z</updated>
   <id>http://zhoh.github.io/</id>
   
   <author>
@@ -20,14 +20,14 @@
     <link href="http://zhoh.github.io/2016/06/28/textView-maxLength/"/>
     <id>http://zhoh.github.io/2016/06/28/textView-maxLength/</id>
     <published>2016-06-28T11:35:58.000Z</published>
-    <updated>2016-06-29T01:41:17.000Z</updated>
+    <updated>2016-06-29T01:43:40.000Z</updated>
     
     <content type="html">&lt;p&gt;一个简单的小需求：文本框最多可以输入N个字，超过后不可输入，实际在过程中遇到了一些小问题，这里记录一下，想直接看结论的可以直接点目录的“最终版”；&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
 &lt;h1 id=&quot;一开始的实现-第一版&quot;&gt;&lt;a href=&quot;#一开始的实现-第一版&quot; class=&quot;headerlink&quot; title=&quot;一开始的实现-第一版&quot;&gt;&lt;/a&gt;一开始的实现-第一版&lt;/h1&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (self.maxLength) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        // delete一个或者选中的多个字符&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (0 == text.length &amp;amp;&amp;amp; range.length &amp;gt; 0) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;built_in&quot;&gt;return&lt;/span&gt; YES;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        // 将要生成的文本长度 = 目前文本框文字长度 + 将要输入的文字长度&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (textView.text.length + text.length &amp;gt; self.maxLength) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;built_in&quot;&gt;return&lt;/span&gt; NO;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;built_in&quot;&gt;return&lt;/span&gt; YES;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;当用户在UITextView文本框输入或者删除字符时会调用这个方法，即当文本框中&lt;code&gt;range.location&lt;/code&gt;位置开始的&lt;code&gt;range.length&lt;/code&gt;个文字将要被&lt;code&gt;text&lt;/code&gt;替换时调用，返回YES则通过该次替换，返回&lt;code&gt;NO&lt;/code&gt;则中止该次替换；&lt;br&gt;按照官方文档描述，正常输入（插入）或者删除，都可以认为是一种替换：&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;正常输入的话，相当于用text替换最后一个空字符串(range.location在文本框最后，range.length为0，text就是输入的文字)；&lt;/li&gt;
+&lt;li&gt;正常输入的话，相当于用text替换最后一个空字符串（range.location在文本框最后，range.length为0，text就是输入的文字）；&lt;/li&gt;
 &lt;li&gt;删除的话，相当于用text这个空字符串去替换指定range的文本；&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&quot;问题&quot;&gt;&lt;a href=&quot;#问题&quot; class=&quot;headerlink&quot; title=&quot;问题&quot;&gt;&lt;/a&gt;问题&lt;/h2&gt;&lt;p&gt;没有考虑到粘贴的情况，当用户输入到maxLength时，选中文本框中的几个字符，然后用一个字符替换，预期总字数少了，是可以输入的，没有超过maxLength，但是按照上面的实现，则返回了NO，中止了该次修改；&lt;/p&gt;
